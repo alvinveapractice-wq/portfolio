@@ -35,6 +35,7 @@ export type Service = {
   no: string;
   title: string;
   summary: string;
+  status: "available" | "soon";
   engagement: string;
   href?: string;
 };
@@ -45,6 +46,7 @@ export const services: Service[] = [
     title: "Email management",
     summary:
       "A shared inbox sorted by who and what next, a written 15-minute daily routine, and reply templates that answer in the first sentence.",
+    status: "available",
     engagement: "Monthly retainer · 10 hrs/week",
     href: "/work/inbox-zero",
   },
@@ -53,6 +55,7 @@ export const services: Service[] = [
     title: "Automation with n8n",
     summary:
       "A form, inbox, or sheet event updates the next system and tells the right person — with a written note on what breaks and how it recovers.",
+    status: "available",
     engagement: "Per workflow",
   },
   {
@@ -60,6 +63,7 @@ export const services: Service[] = [
     title: "Notion Ops Hub",
     summary:
       "A client portal for onboarding, deliverables, approvals, invoices, and the weekly report. Duplicated from one template, tailored to the account.",
+    status: "soon",
     engagement: "Setup, then monthly upkeep",
   },
   {
@@ -67,6 +71,7 @@ export const services: Service[] = [
     title: "Landing pages",
     summary:
       "One page that loads fast, works on a phone, and takes the booking or enquiry — deployed, measured, and handed over with the source.",
+    status: "available",
     engagement: "Fixed scope",
   },
   {
@@ -74,6 +79,7 @@ export const services: Service[] = [
     title: "Funnels",
     summary:
       "The page, a lead magnet, a thank-you step, and three follow-up emails, with every step tracked so you know where people stop.",
+    status: "soon",
     engagement: "Fixed scope",
   },
   {
@@ -81,6 +87,30 @@ export const services: Service[] = [
     title: "AI digital creation",
     summary:
       "Social images and a short promo video to launch the page, produced from a written prompt log and edited before delivery.",
+    status: "soon",
     engagement: "Per batch",
+  },
+];
+
+export const processSteps = [
+  {
+    no: "01",
+    title: "A 20-minute call",
+    copy: "What lands in your inbox or on your desk, what you use now, and what you want to stop doing. No slides, no pitch deck.",
+  },
+  {
+    no: "02",
+    title: "A fixed quote",
+    copy: "Scope, fee, revision limit and delivery date in writing before work starts. Anything outside that scope is a change order, quoted first.",
+  },
+  {
+    no: "03",
+    title: "The build",
+    copy: "One deliverable at a time, shown while it is being built, so a wrong direction costs a day instead of a week.",
+  },
+  {
+    no: "04",
+    title: "SOP handoff",
+    copy: "The written procedure, a recorded walkthrough and 14 days of support for defects. You can run it without me.",
   },
 ];

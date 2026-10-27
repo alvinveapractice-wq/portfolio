@@ -161,7 +161,7 @@ p { margin: 0 0 1rem; }
 
 /* ---------- hero ---------- */
 
-.hero { padding: 5.5rem 0 3.5rem; }
+.hero { padding: 5.2rem 0 2.6rem; }
 
 .hero-lede {
   margin-top: 1.8rem;
@@ -222,6 +222,39 @@ p { margin: 0 0 1rem; }
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
+/* ---------- walkthrough, pulled up next to the hero ---------- */
+
+.hero-film { padding: 0 0 3.4rem; }
+
+.film-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+.film-head .eyebrow { margin: 0; }
+.film-head span { font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.film { max-width: 920px; }
+.film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  background: #000;
+  box-shadow: 0 24px 52px -36px rgba(22, 32, 44, .55);
+}
+.film figcaption {
+  margin-top: .6rem;
+  font-size: .75rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 64ch;
+}
+
 /* ---------- proof strip ---------- */
 
 .proof {
@@ -234,6 +267,7 @@ p { margin: 0 0 1rem; }
 .proof div:first-child { border-left: 0; padding-left: 0; }
 .proof b { display: block; font-family: var(--serif); font-size: 1.85rem; font-weight: 500; line-height: 1.1; }
 .proof span { display: block; margin-top: .35rem; font-size: .75rem; color: var(--muted); }
+.proof-note { margin: .85rem 0 0; font-size: .7rem; color: var(--muted); }
 
 /* ---------- sections ---------- */
 
@@ -329,10 +363,57 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
 .service-name a { text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 .service-name a:hover { border-color: var(--accent); }
 .service-copy { font-size: .87rem; color: var(--muted); line-height: 1.55; margin: 0; }
-.service-price { text-align: right; }
-.service-price span { display: block; font-size: .74rem; color: var(--muted); line-height: 1.4; }
 
-.service-foot { margin-top: 1.4rem; font-size: .78rem; color: var(--muted); max-width: 62ch; }
+.service-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .4rem;
+  text-align: right;
+}
+.service-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.service-status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+}
+.service-row[data-state="available"] .service-status { color: var(--accent-ink); }
+.service-row[data-state="available"] .service-status::before {
+  opacity: 1;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.service-engagement { display: block; font-size: .73rem; color: var(--muted); line-height: 1.4; }
+
+.service-foot { margin-top: 1.4rem; font-size: .78rem; color: var(--muted); max-width: 72ch; }
+.service-foot b { color: var(--ink-soft); font-weight: 600; }
+
+/* ---------- how I work ---------- */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+.step { border-top: 1px solid var(--line-strong); padding-top: 1rem; }
+.step-no { font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; color: var(--accent-ink); }
+.step h3 { font-size: 1.02rem; margin: .55rem 0 .45rem; }
+.step p { margin: 0; font-size: .84rem; line-height: 1.55; color: var(--muted); max-width: 34ch; }
 
 /* ---------- about ---------- */
 
@@ -475,6 +556,7 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
   .cs-body { grid-template-columns: 1fr; gap: 2.2rem; }
   .cs-aside { position: static; }
   .cs-meta { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
 }
 
 @media (max-width: 720px) {
@@ -487,13 +569,26 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
   .proof { grid-template-columns: repeat(2, 1fr); }
   .proof div:nth-child(3) { border-left: 0; padding-left: 0; }
   .proof div:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .hero-film { padding-bottom: 2.6rem; }
   .service-row { grid-template-columns: 2.2rem 1fr; gap: .4rem 1rem; }
   .service-copy { grid-column: 2; }
-  .service-price { grid-column: 2; text-align: left; margin-top: .35rem; }
+  .service-meta {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: .9rem;
+    text-align: left;
+    margin-top: .35rem;
+  }
   .cs-media { grid-template-columns: 1fr; }
   .cs-meta { grid-template-columns: repeat(2, 1fr); }
   .contact { padding: 3.5rem 0; }
   .contact-row { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 600px) {
+  .steps { grid-template-columns: 1fr; gap: 1.4rem; }
+  .film-head { flex-direction: column; gap: .3rem; }
 }
 
 @media (max-width: 480px) {

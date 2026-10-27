@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CopyEmail } from "@/components/copy-email";
-import { site, services } from "@/content/site";
+import { site, services, processSteps as steps } from "@/content/site";
 import { work } from "@/content/work";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
               See the Inbox Zero build <span className="arrow">→</span>
             </Link>
             <span className="hero-hint">
-              3:31 walkthrough · SOP, templates and filter list included
+              SOP, templates and filter list included · no signup
             </span>
           </div>
 
@@ -38,26 +38,51 @@ export default function Home() {
         </div>
       </section>
 
+      {featured.video && (
+        <section className="hero-film" aria-label={`${featured.video.title} walkthrough`}>
+          <div className="shell">
+            <div className="film-head">
+              <p className="eyebrow">Watch the build</p>
+              <span>3:31 · one take, no cuts</span>
+            </div>
+
+            <figure className="film">
+              <video controls playsInline preload="none" poster={featured.video.poster}>
+                <source src={featured.video.src} type="video/mp4" />
+                Your browser cannot play this video. The same steps are written up in the case study.
+              </video>
+              <figcaption>
+                Eight unread messages to zero, with the labels and filters shown live — narrated at a
+                working pace, not a demo pace.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section aria-label="At a glance">
         <div className="shell">
           <div className="proof">
             <div>
-              <b>01</b>
-              <span>proof build shipped</span>
-            </div>
-            <div>
-              <b>7 + 8</b>
-              <span>labels and filters</span>
+              <b>8 → 0</b>
+              <span>unread messages to inbox zero</span>
             </div>
             <div>
               <b>15 min</b>
-              <span>daily routine</span>
+              <span>daily routine, written down</span>
+            </div>
+            <div>
+              <b>7 + 8</b>
+              <span>labels and filters doing the sorting</span>
             </div>
             <div>
               <b>24 h</b>
-              <span>reply time</span>
+              <span>reply time, Monday to Saturday</span>
             </div>
           </div>
+          <p className="proof-note">
+            Figures from Build 01, a self-directed practice sandbox. No client results are claimed.
+          </p>
         </div>
       </section>
 
@@ -138,24 +163,48 @@ export default function Home() {
 
           <div className="service-list">
             {services.map((service) => (
-              <div className="service-row" key={service.no}>
+              <div className="service-row" key={service.no} data-state={service.status}>
                 <span className="service-num">{service.no}</span>
                 <span className="service-name">
                   {service.href ? <Link href={service.href}>{service.title}</Link> : service.title}
                 </span>
                 <p className="service-copy">{service.summary}</p>
-                <span className="service-price">
-                  <span>{service.engagement}</span>
+                <span className="service-meta">
+                  <span className="service-status">
+                    {service.status === "available" ? "Available now" : "Coming soon"}
+                  </span>
+                  <span className="service-engagement">{service.engagement}</span>
                 </span>
               </div>
             ))}
           </div>
 
           <p className="service-foot">
-            Lines 02–06 ship over the next six weeks at intro rates — one a week, each with the same
-            evidence standard as the first. If the scope is unclear, the first call is to size it, not
-            to sell it.
+            <b>Available now</b> means there is proof behind the line: a case study, a build you can
+            open, or work I can walk you through on a call. <b>Coming soon</b> means the proof build is
+            still in progress — those lines are quoted once their walkthrough is published, one a week.
           </p>
+        </div>
+      </section>
+
+      <section className="section" id="process">
+        <div className="shell">
+          <div className="section-head">
+            <h2>How I work</h2>
+            <p className="section-note">
+              Four steps, the same on every engagement. Nothing is built before step two is in writing.
+            </p>
+          </div>
+
+          <ol className="steps">
+            {steps.map((step) => (
+              <li className="step" key={step.no}>
+                <span className="step-no">{step.no}</span>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
