@@ -20,10 +20,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${item.title} — ${item.kicker}`,
     description: item.summary,
+    alternates: { canonical: `/work/${item.slug}` },
     openGraph: {
       title: `${item.title} — ${item.kicker}`,
       description: item.summary,
+      url: `/work/${item.slug}`,
       type: "article",
+      images: [
+        {
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt: `${item.title} — ${item.kicker}`,
+        },
+      ],
     },
   };
 }
