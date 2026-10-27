@@ -23,6 +23,20 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* thin, quiet scrollbar — the page should not look like a 1998 dialog */
+html { scrollbar-color: var(--line-strong) var(--paper); scrollbar-width: thin; }
+
+@supports not (scrollbar-width: thin) {
+  html::-webkit-scrollbar { width: 10px; height: 10px; }
+  html::-webkit-scrollbar-track { background: var(--paper); }
+  html::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border: 2px solid var(--paper);
+    border-radius: 999px;
+  }
+  html::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -159,8 +173,15 @@ p { margin: 0 0 1rem; }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .7rem;
+  align-items: center;
+  gap: .7rem 1.4rem;
   margin-top: 2.1rem;
+}
+
+.hero-hint {
+  font-size: .78rem;
+  color: var(--muted);
+  letter-spacing: .005em;
 }
 
 .btn {

@@ -23,9 +23,9 @@ export default function Home() {
             <Link className="btn btn-primary" href={`/work/${featured.slug}`}>
               See the Inbox Zero build <span className="arrow">→</span>
             </Link>
-            <a className="btn btn-secondary" href={`mailto:${site.email}`}>
-              Email me
-            </a>
+            <span className="hero-hint">
+              3:31 walkthrough · SOP, templates and filter list included
+            </span>
           </div>
 
           <div className="hero-meta">
