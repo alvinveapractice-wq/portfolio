@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Alvin Moncada">
+  <rect width="64" height="64" rx="6" fill="#16212c"/>
+  <text x="31" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#f7f5f0">A</text>
+  <circle cx="50" cy="45" r="3.5" fill="#2f8f80"/>
+</svg>
