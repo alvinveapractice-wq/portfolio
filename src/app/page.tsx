@@ -15,7 +15,7 @@ export default function Home() {
           <h1>
             Your inbox at <span className="h1-accent">zero</span>.
             <br />
-            Your <span className="nowrap">follow-up</span> on time.
+            Your <span className="nowrap">follow-up</span> <span className="nowrap">on time.</span>
           </h1>
           <p className="hero-lede">{site.intro}</p>
 

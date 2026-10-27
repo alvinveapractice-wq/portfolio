@@ -562,7 +562,7 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
 @media (max-width: 720px) {
   .shell { width: calc(100% - 2.5rem); }
   .nav a.nl { display: none; }
-  .hero { padding: 3.5rem 0 2.5rem; }
+  .hero { padding: 3rem 0 2rem; }
   .section { padding: 3.5rem 0; }
   .section-head { flex-direction: column; align-items: flex-start; gap: .6rem; margin-bottom: 2rem; }
   .section-note { text-align: left; }
@@ -593,6 +593,7 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
 
 @media (max-width: 480px) {
   .brand span { display: none; }
+  h1 { font-size: 2rem; }
   .hero-meta { flex-direction: column; gap: .35rem; }
   .metrics { grid-template-columns: 1fr 1fr; }
 }
