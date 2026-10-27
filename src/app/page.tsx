@@ -131,8 +131,8 @@ export default function Home() {
           <div className="section-head">
             <h2>Six ways I can help</h2>
             <p className="section-note">
-              Prices are starting points for a fixed scope. Work is quoted per deliverable, not by the
-              hour.
+              Every engagement is quoted after a short call, and the number is fixed in writing before
+              work starts.
             </p>
           </div>
 
@@ -145,17 +145,16 @@ export default function Home() {
                 </span>
                 <p className="service-copy">{service.summary}</p>
                 <span className="service-price">
-                  <b>{service.price}</b>
-                  {service.note && <span>{service.note}</span>}
+                  <span>{service.engagement}</span>
                 </span>
               </div>
             ))}
           </div>
 
           <p className="service-foot">
-            Lines 02–06 are at intro prices while their proof builds ship — one a week, each with the
-            same evidence standard as the first. If the scope is unclear, the first call is to size it,
-            not to sell it.
+            Lines 02–06 ship over the next six weeks at intro rates — one a week, each with the same
+            evidence standard as the first. If the scope is unclear, the first call is to size it, not
+            to sell it.
           </p>
         </div>
       </section>

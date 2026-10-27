@@ -295,7 +295,7 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
 
 .service-row {
   display: grid;
-  grid-template-columns: 2.6rem 1.05fr 1.5fr auto;
+  grid-template-columns: 2.6rem 1.05fr 1.45fr 10.5rem;
   gap: 1.6rem;
   align-items: start;
   padding: 1.55rem 0;
@@ -308,9 +308,8 @@ figcaption { margin-top: .55rem; font-size: .73rem; color: var(--muted); line-he
 .service-name a { text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 .service-name a:hover { border-color: var(--accent); }
 .service-copy { font-size: .87rem; color: var(--muted); line-height: 1.55; margin: 0; }
-.service-price { text-align: right; white-space: nowrap; }
-.service-price b { display: block; font-size: .9rem; font-weight: 600; }
-.service-price span { display: block; font-size: .72rem; color: var(--muted); margin-top: .15rem; }
+.service-price { text-align: right; }
+.service-price span { display: block; font-size: .74rem; color: var(--muted); line-height: 1.4; }
 
 .service-foot { margin-top: 1.4rem; font-size: .78rem; color: var(--muted); max-width: 62ch; }
 

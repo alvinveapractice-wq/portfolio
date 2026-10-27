@@ -35,8 +35,7 @@ export type Service = {
   no: string;
   title: string;
   summary: string;
-  price: string;
-  note?: string;
+  engagement: string;
   href?: string;
 };
 
@@ -46,8 +45,7 @@ export const services: Service[] = [
     title: "Email management",
     summary:
       "A shared inbox sorted by who and what next, a written 15-minute daily routine, and reply templates that answer in the first sentence.",
-    price: "₱10,000 / month",
-    note: "10 hours a week",
+    engagement: "Monthly retainer · 10 hrs/week",
     href: "/work/inbox-zero",
   },
   {
@@ -55,39 +53,34 @@ export const services: Service[] = [
     title: "Automation with n8n",
     summary:
       "A form, inbox, or sheet event updates the next system and tells the right person — with a written note on what breaks and how it recovers.",
-    price: "from ₱5,000",
-    note: "per workflow",
+    engagement: "Per workflow",
   },
   {
     no: "03",
     title: "Notion Ops Hub",
     summary:
       "A client portal for onboarding, deliverables, approvals, invoices, and the weekly report. Duplicated from one template, tailored to the account.",
-    price: "from ₱8,000",
-    note: "setup, then ₱3,000 / month",
+    engagement: "Setup, then monthly upkeep",
   },
   {
     no: "04",
     title: "Landing pages",
     summary:
       "One page that loads fast, works on a phone, and takes the booking or enquiry — deployed, measured, and handed over with the source.",
-    price: "from ₱6,000",
-    note: "fixed scope",
+    engagement: "Fixed scope",
   },
   {
     no: "05",
     title: "Funnels",
     summary:
       "The page, a lead magnet, a thank-you step, and three follow-up emails, with every step tracked so you know where people stop.",
-    price: "from ₱9,000",
-    note: "fixed scope",
+    engagement: "Fixed scope",
   },
   {
     no: "06",
     title: "AI digital creation",
     summary:
       "Social images and a short promo video to launch the page, produced from a written prompt log and edited before delivery.",
-    price: "from ₱1,500",
-    note: "per batch",
+    engagement: "Per batch",
   },
 ];
