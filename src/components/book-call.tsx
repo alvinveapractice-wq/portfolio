@@ -132,9 +132,12 @@ export function BookCall({
             role="dialog"
             aria-modal="true"
             aria-label="Book a call"
-            onClick={() => setOpen(false)}
+            onClick={(event) => {
+              // only a click on the backdrop itself closes the dialog
+              if (event.target === event.currentTarget) setOpen(false);
+            }}
           >
-            <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-panel">
               <div className="modal-head">
                 <div>
                   <p className="eyebrow" style={{ marginBottom: "0.5rem" }}>

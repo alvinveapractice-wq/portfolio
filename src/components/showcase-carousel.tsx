@@ -245,7 +245,12 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
           role="dialog"
           aria-modal="true"
           aria-label={current.label}
-          onClick={() => setOpen(null)}
+          onClick={(event) => {
+            // only a click on the backdrop itself closes the dialog. The
+            // previous/next buttons live inside the backdrop, so without this
+            // check their click bubbled up and shut the lightbox down.
+            if (event.target === event.currentTarget) setOpen(null);
+          }}
         >
           <div className="lightbox-head">
             <p>
@@ -261,7 +266,14 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
             </button>
           </div>
 
-          <div className="lightbox-body" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="lightbox-body"
+            onClick={(event) => {
+              // the empty space around the image closes the dialog; the image
+              // itself does not
+              if (event.target === event.currentTarget) setOpen(null);
+            }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={current.src} alt={current.alt} />
           </div>
