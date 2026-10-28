@@ -260,12 +260,15 @@ p { margin: 0 0 1rem; }
 }
 .btn .arrow { font-family: var(--mono); }
 
-/* the two hero actions share one height; the solid fill carries the weight */
+/* the two hero actions share one height and one width; the solid fill
+   carries the weight */
 .hero-actions .btn-primary,
 .hero-actions .btn-ghost {
   min-height: 54px;
+  min-width: 188px;
   padding: 0.9rem 1.7rem;
   font-size: 0.92rem;
+  justify-content: center;
 }
 .btn svg { display: block; flex-shrink: 0; }
 

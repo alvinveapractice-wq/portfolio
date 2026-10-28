@@ -24,12 +24,12 @@ export default function Home() {
           <p className="hero-lede">{site.intro}</p>
 
           <div className="hero-actions">
-            <BookCall className="btn btn-primary">
-              Book a call <PhoneIcon />
-            </BookCall>
-            <a className="btn btn-ghost" href={`mailto:${site.email}`}>
+            <a className="btn btn-primary" href={`mailto:${site.email}`}>
               Drop me an email
             </a>
+            <BookCall className="btn btn-ghost">
+              Book a call <PhoneIcon />
+            </BookCall>
             <span className="hero-hint">Free 20-minute call · no pitch deck</span>
           </div>
 
