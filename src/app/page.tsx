@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CopyEmail } from "@/components/copy-email";
 import { BookCall } from "@/components/book-call";
 import { PhoneIcon } from "@/components/icons";
+import { VideoPlayer } from "@/components/video-player";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { showcase } from "@/content/showcase";
 import { site, services, processSteps as steps } from "@/content/site";
@@ -208,10 +209,11 @@ export default function Home() {
             </div>
 
             <figure className="film">
-              <video controls playsInline preload="none" poster={featured.video.poster}>
-                <source src={featured.video.src} type="video/mp4" />
-                Your browser cannot play this video. The same steps are written up in the case study.
-              </video>
+              <VideoPlayer
+                src={featured.video.src}
+                poster={featured.video.poster}
+                title={featured.video.title}
+              />
             </figure>
           </div>
         </section>

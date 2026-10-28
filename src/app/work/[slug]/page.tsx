@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
+import { VideoPlayer } from "@/components/video-player";
 import { getWork, work } from "@/content/work";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -114,10 +115,11 @@ export default async function WorkPage({ params }: Props) {
 
           {item.video && (
             <div className="video-wrap">
-              <video controls playsInline preload="metadata" poster={item.video.poster}>
-                <source src={item.video.src} type="video/mp4" />
-                Your browser cannot play this video. The narration is available in the file list below.
-              </video>
+              <VideoPlayer
+                src={item.video.src}
+                poster={item.video.poster}
+                title={item.video.title}
+              />
               <div className="video-cap">
                 <span>
                   {item.video.title} · {item.video.length}
