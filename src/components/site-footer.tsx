@@ -7,12 +7,9 @@ export function SiteFooter() {
         <span>
           © 2026 {site.name} · {site.location}
         </span>
-        <span>
-          Practice builds are labelled · No client work is claimed ·{" "}
-          <a href={site.github} target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-        </span>
+        <a href={site.github} target="_blank" rel="noreferrer">
+          GitHub
+        </a>
       </div>
     </footer>
   );

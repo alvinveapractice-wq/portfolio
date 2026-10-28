@@ -5,8 +5,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ShowcaseCollection } from "@/content/showcase";
 
 const GAP = 18;
-const ADVANCE_MS = 4200;
-const HOLD_MS = 9000;
+const ADVANCE_MS = 3600;
+const HOLD_MS = 5000;
 
 export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollection }) {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -15,8 +15,12 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
-  const [playing, setPlaying] = useState(true);
   const [inView, setInView] = useState(false);
+  // Pause while the tab is hidden, and pick up again when it comes back —
+  // unless the visitor pressed pause themselves.
+  const [userPaused, setUserPaused] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const playing = !userPaused && !hidden;
   const holdUntil = useRef(0);
 
   const { items } = collection;
@@ -95,9 +99,7 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
   }, [playing, inView, open, step]);
 
   useEffect(() => {
-    const onVisibility = () => {
-      if (document.hidden) setPlaying(false);
-    };
+    const onVisibility = () => setHidden(document.hidden);
     document.addEventListener("visibilitychange", onVisibility);
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
@@ -124,6 +126,14 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
     holdUntil.current = Date.now() + HOLD_MS;
   };
 
+  // Only a deliberate horizontal gesture on the row should stop the
+  // slideshow. A vertical wheel over the row is usually the visitor
+  // scrolling the page, and treating that as "pause" made the carousel
+  // look frozen every time they scrolled past it.
+  const holdOnHorizontalWheel = (event: React.WheelEvent) => {
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) hold();
+  };
+
   const current = open === null ? null : items[open];
 
   return (
@@ -133,7 +143,7 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
         ref={rowRef}
         onPointerDown={hold}
         onTouchStart={hold}
-        onWheel={hold}
+        onWheel={holdOnHorizontalWheel}
         onKeyDown={hold}
       >
         {items.map((item, i) => (
@@ -182,7 +192,7 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
         <button
           type="button"
           className="carousel-btn carousel-play"
-          onClick={() => setPlaying((p) => !p)}
+          onClick={() => setUserPaused((p) => !p)}
           aria-label={playing ? "Pause the slideshow" : "Play the slideshow"}
           aria-pressed={!playing}
         >

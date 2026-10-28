@@ -130,18 +130,6 @@ a { color: inherit; }
   border-color: var(--mint);
 }
 
-.nav .nav-cta {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 0.5rem 0.95rem;
-  border: 1px solid var(--mint);
-  border-radius: 3px;
-  color: var(--mint);
-  transition: background 0.15s ease, color 0.15s ease;
-}
-.nav .nav-cta:hover { background: var(--mint); color: var(--ink); }
-
 /* ---------- type ---------- */
 
 .eyebrow {
@@ -272,17 +260,14 @@ p { margin: 0 0 1rem; }
 }
 .btn .arrow { font-family: var(--mono); }
 
-/* the primary hero action should out-weigh the secondary one */
-.hero-actions .btn-primary {
-  padding: 0.95rem 2rem;
-  font-size: 0.95rem;
-  min-width: 224px;
-  justify-content: center;
-}
+/* the two hero actions share one height; the solid fill carries the weight */
+.hero-actions .btn-primary,
 .hero-actions .btn-ghost {
-  padding: 0.7rem 1.05rem;
-  font-size: 0.84rem;
+  min-height: 54px;
+  padding: 0.9rem 1.7rem;
+  font-size: 0.92rem;
 }
+.btn svg { display: block; flex-shrink: 0; }
 
 /* ---------- booking dialog ---------- */
 

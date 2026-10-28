@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { site } from "@/content/site";
 
 const nav = [
+  { href: "/#top", label: "Home", id: "top" },
   { href: "/#build", label: "Build", id: "build" },
   { href: "/#showcase", label: "Library", id: "showcase" },
   { href: "/#services", label: "Services", id: "services" },
@@ -12,15 +12,10 @@ const nav = [
 ];
 
 export function SiteHeader() {
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<string | null>("top");
 
   useEffect(() => {
     const onScroll = () => {
-      // nothing is highlighted while the hero is still the thing on screen
-      if (window.scrollY < 320) {
-        setActive(null);
-        return;
-      }
       const line = window.scrollY + window.innerHeight * 0.35;
       let current: string | null = null;
       // walk the sections in document order, not nav order — otherwise the
@@ -68,9 +63,6 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <a className="nav-cta" href={`mailto:${site.email}`}>
-            Email me
-          </a>
         </nav>
       </div>
     </header>

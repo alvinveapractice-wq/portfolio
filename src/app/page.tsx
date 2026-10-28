@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CopyEmail } from "@/components/copy-email";
 import { BookCall } from "@/components/book-call";
+import { PhoneIcon } from "@/components/icons";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { showcase } from "@/content/showcase";
 import { site, services, processSteps as steps } from "@/content/site";
@@ -12,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero" id="top">
         <div className="shell">
           <p className="eyebrow">Virtual assistant · Inbox management & AI-assisted operations</p>
           <h1>
@@ -24,11 +25,11 @@ export default function Home() {
 
           <div className="hero-actions">
             <BookCall className="btn btn-primary">
-              Book a call <span className="arrow">→</span>
+              Book a call <PhoneIcon />
             </BookCall>
-            <Link className="btn btn-ghost" href="#showcase">
-              Browse the library
-            </Link>
+            <a className="btn btn-ghost" href={`mailto:${site.email}`}>
+              Drop me an email
+            </a>
             <span className="hero-hint">Free 20-minute call · no pitch deck</span>
           </div>
 
@@ -63,7 +64,8 @@ export default function Home() {
             </div>
           </div>
           <p className="proof-note">
-            Build 01 measured on a practice sandbox. The 26 are deliverable files, each openable below.
+            Build 01, measured in a practice sandbox. The 26 are deliverable files — each one openable
+            below.
           </p>
         </div>
       </section>
@@ -72,8 +74,8 @@ export default function Home() {
         <div className="shell">
           <div className="section-head">
             <div>
-              <span className="section-tag">01 — Who you are hiring</span>
-              <h2>Two years of a written procedure, applied remotely.</h2>
+              <span className="section-tag">01 — About</span>
+              <h2>I learned this on a night shift. I do it remotely now.</h2>
             </div>
           </div>
 
@@ -127,12 +129,6 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="service-foot">
-            All four lines are available now — the files exist, they are published, and you can open
-            and download every one of them below. The Inbox Zero build also ships a recorded
-            walkthrough; the other three are documented files with a written guide each. No paid
-            client work is claimed on this site.
-          </p>
         </div>
       </section>
 
@@ -144,8 +140,8 @@ export default function Home() {
               <h2>Inbox Zero Kit</h2>
             </div>
             <p className="section-note">
-              The one build where the walkthrough, the files and the written procedure are all
-              published. Open any of it.
+              The build with a recorded walkthrough, a written SOP and the files published
+              together.
             </p>
           </div>
 

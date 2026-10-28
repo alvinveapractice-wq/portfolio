@@ -18,7 +18,8 @@ export const site = {
     "I build the systems small businesses run on: a sorted inbox, and the templates, content and design work that keeps the week moving. Then I write the procedure down so it survives without me.",
   about: [
     "I spent two years on the front line of a convenience store — checkout, stock, and the daily sales record — where a missed entry becomes a wrong order the following week. That is where I learned that a written procedure beats memory.",
-    "Now I do the remote version of that work. One inbox, sorted, with a routine someone else could follow. Alongside it, I build the operating kits, content packs and design assets a small business reaches for every week — SOPs, onboarding kits, trackers, content calendars, sticker packs and wall art — each one as an editable file rather than a screenshot of somebody else's idea.",
+    "Now I do the remote version of that work. One inbox, sorted, with a routine someone else could follow. Alongside it, I build the kits and assets a small business reaches for every week — SOPs, onboarding packs, trackers, content calendars, sticker packs, wall art — each one an editable file, not a screenshot of somebody else's idea.",
+    "Everything on this site is a practice build I made for myself. No client results are claimed and no client data is used.",
     "Criminology graduate, 2024. Based in the Philippines, working GMT+8.",
   ],
   facts: [
