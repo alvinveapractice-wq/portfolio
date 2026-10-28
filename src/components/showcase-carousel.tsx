@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ShowcaseCollection } from "@/content/showcase";
+import type { ShowcaseCollection, ShowcaseItem } from "@/content/showcase";
 
 const GAP = 18;
 const DRIFT_SPEED = 0.045; // px per millisecond — about 45px a second
@@ -163,7 +163,7 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
 
   const current = open === null ? null : items[open];
 
-  const card = (item: { src: string; alt: string; label: string; caption: string }, i: number, dup: boolean) => (
+  const card = (item: ShowcaseItem, i: number, dup: boolean) => (
     <figure className="shot-card" key={dup ? `${item.src}-dup` : item.src} data-dup={dup ? "true" : undefined}>
       <button
         type="button"
@@ -185,6 +185,16 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
         <span>{item.label}</span>
         {item.caption}
       </figcaption>
+      {!dup && (
+        <a
+          className="shot-dl"
+          href={item.download ?? item.src}
+          download
+          aria-label={`Download ${item.label}`}
+        >
+          ↓ {item.downloadKind === "image" ? "Image" : "File"}
+        </a>
+      )}
     </figure>
   );
 

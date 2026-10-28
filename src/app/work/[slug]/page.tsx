@@ -149,7 +149,7 @@ export default async function WorkPage({ params }: Props) {
           )}
 
           <div className="cs-body">
-            <aside className="cs-aside">
+            <aside className="cs-aside" id="files">
               <h2>Files</h2>
               <ul>
                 {item.files?.map((file) => (

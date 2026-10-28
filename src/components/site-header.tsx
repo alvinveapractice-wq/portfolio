@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 
 /**
  * The nav order matches the order the sections actually appear on the page:
- * hero, about, services, build, library, process, contact. The scroll-spy
+ * hero, services, about, build, library, process, contact. The scroll-spy
  * walks these in document order, so the two lists must not drift apart.
  */
 const nav = [
   { href: "/#top", label: "Home", id: "top" },
-  { href: "/#about", label: "About", id: "about" },
   { href: "/#services", label: "Services", id: "services" },
+  { href: "/#about", label: "About", id: "about" },
   { href: "/#build", label: "Build", id: "build" },
   { href: "/#showcase", label: "Library", id: "showcase" },
   { href: "/#process", label: "How I work", id: "process" },

@@ -10,6 +10,14 @@ export const site = {
   role: "Virtual assistant — inbox management & AI-assisted operations",
   email: "alvinmoncada.va@gmail.com",
   phone: "+63 970 680 0720",
+  /**
+   * The phone number is not printed as plain text on the site. A bare number
+   * on a public page is a harvested list for cold-call spam; behind a chat
+   * link it stays one tap away for a real client and invisible to a scraper.
+   * It is still printed on the resume, which only reaches people who asked
+   * for it.
+   */
+  whatsapp: "https://wa.me/639706800720",
   location: "Philippines · GMT+8",
   availability: "40 hrs/week · four-hour overlap with US and AU",
   github: "https://github.com/alvinveapractice-wq",

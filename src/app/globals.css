@@ -253,6 +253,15 @@ p { margin: 0 0 1rem; }
 }
 .btn .arrow { font-family: var(--mono); }
 
+/* a quieter button, used for the per-collection download calls */
+.btn-sm {
+  padding: 0.6rem 0.95rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* the two hero actions share one height and one width; the solid fill
    carries the weight */
 .hero-actions .btn-primary,
@@ -583,6 +592,63 @@ section[id] { scroll-margin-top: 5.5rem; }
   letter-spacing: 0.08em;
 }
 
+/* a small index above the library, so a long page can be scanned */
+.library-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+}
+.library-index a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--paper-dim);
+  font-size: 0.78rem;
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+.library-index a:hover { border-color: var(--mint); color: var(--paper); }
+.library-index b {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--mint);
+  font-weight: 700;
+}
+
+/* the secondary collections get a compact, static strip */
+.strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.1rem;
+}
+.strip-card { display: flex; flex-direction: column; }
+.strip-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--ink-card), var(--ink-raise));
+  transition: border-color 0.18s ease;
+}
+.strip-frame:hover { border-color: var(--mint); }
+.strip-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.strip-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.76rem;
+  color: var(--paper-dim);
+  line-height: 1.35;
+}
+
 .carousel { position: relative; }
 
 .carousel-row {
@@ -635,6 +701,23 @@ section[id] { scroll-margin-top: 5.5rem; }
   color: var(--muted-2);
   margin-bottom: 0.22rem;
 }
+
+/* every card hands over a real file — the promise is "openable", so the
+   link has to be right there under the caption */
+.shot-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+.shot-dl:hover { color: var(--mint); border-bottom-color: var(--mint); }
 
 .carousel-nav {
   display: flex;
@@ -1056,6 +1139,13 @@ figcaption { margin-top: 0.6rem; font-size: 0.74rem; color: var(--muted); line-h
   font-size: 0.74rem;
   color: var(--muted);
 }
+.contact-meta a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+.contact-meta a:hover { color: var(--mint); border-bottom-color: var(--mint); }
 
 /* ---------- footer ---------- */
 

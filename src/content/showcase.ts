@@ -3,6 +3,15 @@ export type ShowcaseItem = {
   alt: string;
   label: string;
   caption: string;
+  /**
+   * A real file a visitor can take away. Where the product ships as an
+   * editable document this points at that document; where the visual *is*
+   * the deliverable it points at the image. Either way the link hands over
+   * something openable instead of a dead promise.
+   */
+  download?: string;
+  /** "file" for a document, "image" for the visual itself. */
+  downloadKind?: "file" | "image";
 };
 
 export type ShowcaseCollection = {
@@ -12,6 +21,12 @@ export type ShowcaseCollection = {
   kicker: string;
   blurb: string;
   items: ShowcaseItem[];
+  /** The case study that lists every published file in this collection. */
+  caseStudy?: string;
+  /** How many files are published for download right now. */
+  files?: number;
+  /** Render as a compact secondary strip instead of a full carousel. */
+  compact?: boolean;
 };
 
 const base = "/work/showcase";
@@ -22,6 +37,8 @@ export const showcase: ShowcaseCollection[] = [
     no: "02",
     title: "AI Business Templates & Systems",
     kicker: "Operating kits for the work that repeats",
+    caseStudy: "/work/templates",
+    files: 13,
     blurb:
       "Seven editable kits covering the jobs a small business repeats every week — content planning, client onboarding, CRM, inventory, invoicing, project tracking and sales follow-up. Each kit ships as a spreadsheet or document with a guide that says what to type in and what to check.",
     items: [
@@ -29,6 +46,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/content-planning.webp`,
         alt: "AI-powered content planning bundle — source-to-content matrix, tone and platform adaptation, reusable content library and a multi-platform publishing calendar.",
         label: "Content planning",
+        download: "/work/templates/weekly-monthly-content-calendar.xlsx",
+        downloadKind: "file",
         caption:
           "Source brief → repurposing matrix → platform adaptation → review → approved library → publishing calendar.",
       },
@@ -36,6 +55,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/client-onboarding.webp`,
         alt: "Client onboarding kit suite — intake questionnaire, welcome and expectations pack, project kickoff brief, access assets and handoff tracker.",
         label: "Client onboarding",
+        download: "/work/templates/client-onboarding-intake-questionnaire.xlsx",
+        downloadKind: "file",
         caption:
           "Intake questionnaire, welcome pack, kickoff brief, access handoff and tracker — the first week of a client, written down.",
       },
@@ -43,6 +64,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/crm-trackers.webp`,
         alt: "CRM spreadsheet toolkit — lead and prospect tracker, sales pipeline and deal tracker, customer interaction log and account health tracker.",
         label: "CRM & pipeline",
+        download: "/work/templates/lead-and-prospect-tracker.xlsx",
+        downloadKind: "file",
         caption:
           "Lead tracker, deal pipeline, interaction log and account health — four sheets that replace four separate memories.",
       },
@@ -50,6 +73,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/inventory-sheets.webp`,
         alt: "Inventory management sheets — stock level and reorder tracker, inventory movement log, purchase order tracker and stock count reconciliation.",
         label: "Inventory",
+        download: "/work/templates/stock-level-reorder-tracker.xlsx",
+        downloadKind: "file",
         caption:
           "Stock levels, movement log, purchase orders and shrinkage reconciliation — the same four ledgers from the store floor, in a spreadsheet.",
       },
@@ -57,6 +82,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/invoice-expense.webp`,
         alt: "Invoice and expense tracker toolkit — invoice register and payment tracker, business expense tracker, monthly budget and cash flow tracker, client billing summary.",
         label: "Invoices & expenses",
+        download: "/work/templates/invoice-register-payment-tracker.xlsx",
+        downloadKind: "file",
         caption:
           "Invoice register, expense tracker, cash-flow sheet and a client billing summary — money in and money out, one place.",
       },
@@ -64,6 +91,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/project-management-os.webp`,
         alt: "Notion Project Management OS dashboard — project overview, task and milestone tracker, team workload planner, risk and decision log, meetings and documentation.",
         label: "Project OS (Notion)",
+        download: "/work/templates/project-management-os-setup-guide.md",
+        downloadKind: "file",
         caption:
           "A Notion workspace import pack: dashboard, milestones, workload, risks, decisions and meeting notes.",
       },
@@ -71,6 +100,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/templates/sales-lead-trackers.webp`,
         alt: "Sales and lead tracker templates — lead tracker, sales pipeline tracker, sales outreach and follow-up tracker, sales performance dashboard.",
         label: "Sales & lead tracking",
+        download: "/work/templates/lead-tracker-guide.docx",
+        downloadKind: "file",
         caption:
           "Lead, pipeline, outreach follow-up and a performance dashboard — the outreach rhythm on one screen.",
       },
@@ -81,6 +112,8 @@ export const showcase: ShowcaseCollection[] = [
     no: "03",
     title: "AI Contents & Marketing Products",
     kicker: "Copy, campaigns and calendars, ready to edit",
+    caseStudy: "/work/contents",
+    files: 4,
     blurb:
       "Caption packs, a ten-email campaign library, carousel sets, short-form video scripts and a month of social calendars. The output is editable copy with the structure already decided — hook, body, CTA, hashtags and a posting slot.",
     items: [
@@ -113,6 +146,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/contents/email-campaign-templates.webp`,
         alt: "Email marketing campaign templates cover page — 10 ready-to-customise email templates across welcome, nurture, sales and retention.",
         label: "Email campaigns",
+        download: "/work/contents/email-marketing-campaign-templates.pdf",
+        downloadKind: "file",
         caption:
           "Ten ready-to-customise email templates across welcome, nurture, sales and retention — subject lines, preview text and CTAs included.",
       },
@@ -150,6 +185,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/contents/script-viral-hooks.webp`,
         alt: "Viral short-form video hook guide with hook formulas.",
         label: "Script · Viral hooks",
+        download: "/work/contents/video-script-hook-and-title-prompts.docx",
+        downloadKind: "file",
         caption: "Short-form video script — engagement and viral-style hooks.",
       },
       {
@@ -171,6 +208,9 @@ export const showcase: ShowcaseCollection[] = [
     no: "04",
     title: "AI Visual & Design Assets",
     kicker: "Sticker packs, wall art and brand directions",
+    caseStudy: "/work/visual",
+    files: 6,
+    compact: true,
     blurb:
       "Themed digital sticker packs and a minimalist wall-art set, exported as transparent PNG, SVG and print-ready PDF with a usage guide and a product cover. Brand identity work is still at concept-board stage and is labelled as such.",
     items: [
@@ -178,6 +218,8 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/visual/stickers-cute-sheet.webp`,
         alt: "Cute and kawaii digital sticker sheet — 16 sticker designs on an A4 printable sheet.",
         label: "Cute & kawaii stickers",
+        download: "/work/visual/cute-kawaii-sticker-sheet-a4.pdf",
+        downloadKind: "file",
         caption:
           "16 transparent PNG stickers plus matching SVG files and an A4 printable sheet.",
       },
@@ -185,30 +227,40 @@ export const showcase: ShowcaseCollection[] = [
         src: `${base}/visual/stickers-cute-cover.webp`,
         alt: "Cute and kawaii digital sticker pack product cover.",
         label: "Cute & kawaii cover",
+        download: "/work/visual/cute-kawaii-usage-guide.pdf",
+        downloadKind: "file",
         caption: "Product cover and preview — how a digital pack is presented for sale.",
       },
       {
         src: `${base}/visual/stickers-minimal-sheet.webp`,
         alt: "Minimalist productivity digital sticker sheet — 16 sticker designs on an A4 printable sheet.",
         label: "Minimalist productivity",
+        download: "/work/visual/minimalist-productivity-sticker-sheet-a4.pdf",
+        downloadKind: "file",
         caption: "A minimalist productivity set — planners, lists and focus marks.",
       },
       {
         src: `${base}/visual/stickers-retro-sheet.webp`,
         alt: "Retro and vintage digital sticker sheet — 16 sticker designs on an A4 printable sheet.",
         label: "Retro & vintage",
+        download: "/work/visual/retro-vintage-sticker-sheet-a4.pdf",
+        downloadKind: "file",
         caption: "A retro and vintage set — badges, labels and dated flourishes.",
       },
       {
         src: `${base}/visual/stickers-botanical-sheet.webp`,
         alt: "Botanical and nature digital sticker sheet — 16 sticker designs on an A4 printable sheet.",
         label: "Botanical & nature",
+        download: "/work/visual/botanical-nature-sticker-sheet-a4.pdf",
+        downloadKind: "file",
         caption: "A botanical set — leaves, stems and pressed-flower shapes.",
       },
       {
         src: `${base}/visual/wall-art-gallery.webp`,
         alt: "Minimalist typography motivational wall art gallery sheet showing six printable prints.",
         label: "Wall art set",
+        download: "/work/visual/minimalist-wall-art-usage-guide.pdf",
+        downloadKind: "file",
         caption:
           "Six minimalist motivational prints — progress, focus, opportunities, time, starting and less noise.",
       },

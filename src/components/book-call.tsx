@@ -118,6 +118,19 @@ export function BookCall({
     setOpen(true);
   };
 
+  // If a real booking page is configured, the button goes straight there.
+  // One click to a calendar beats composing an email, and it removes the
+  // dialog entirely from the path.
+  const direct = booking.google.appointmentUrl || booking.calendly.url || "";
+
+  if (direct) {
+    return (
+      <a className={className} href={direct} target="_blank" rel="noreferrer">
+        {children}
+      </a>
+    );
+  }
+
   return (
     <>
       <button type="button" className={className} onClick={start}>

@@ -158,14 +158,14 @@ export const work: Work[] = [
     metrics: [
       { value: "07", label: "operating kits" },
       { value: "35", label: "spreadsheet templates" },
-      { value: "05", label: "kits openable now" },
+      { value: "07", label: "kits openable now" },
       { value: "07", label: "CSV tables for Notion import" },
     ],
     facts: [
       { label: "Scope", value: "7 kits · 35 spreadsheets · 7 CSV tables" },
       { label: "Structure", value: "Template + guide, every kit" },
       { label: "Formats", value: "XLSX · DOCX · CSV · Markdown" },
-      { label: "Published", value: "10 files open for download" },
+      { label: "Published", value: "13 files open for download" },
       { label: "Status", value: "Self-directed practice build" },
     ],
     media: {},
@@ -220,6 +220,21 @@ export const work: Work[] = [
         label: "Invoice register & payment tracker — guide",
         href: "/work/templates/invoice-register-payment-tracker-guide.docx",
         note: "The weekly check that keeps the register from going stale.",
+      },
+      {
+        label: "Weekly & monthly content calendar",
+        href: "/work/templates/weekly-monthly-content-calendar.xlsx",
+        note: "A month of posts on one sheet — channel, pillar, hook, date, status.",
+      },
+      {
+        label: "Lead tracker — guide",
+        href: "/work/templates/lead-tracker-guide.docx",
+        note: "How the lead tracker is meant to be worked, column by column.",
+      },
+      {
+        label: "Platform-specific content ideas",
+        href: "/work/templates/platform-specific-content-ideas.docx",
+        note: "One idea block per platform, with the format each platform actually rewards.",
       },
     ],
     sections: [
