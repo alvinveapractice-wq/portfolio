@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { getWork, work } from "@/content/work";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -126,6 +127,25 @@ export default async function WorkPage({ params }: Props) {
             </div>
           )}
 
+          {item.gallery && item.gallery.length > 0 && (
+            <div className="cs-gallery">
+              <div className="film-head">
+                <p className="eyebrow">Every visual in this build</p>
+                <span>{item.gallery.length} files · click one for full size</span>
+              </div>
+              <ShowcaseCarousel
+                collection={{
+                  id: item.slug,
+                  no: item.number,
+                  title: item.title,
+                  kicker: item.kicker,
+                  blurb: item.summary,
+                  items: item.gallery,
+                }}
+              />
+            </div>
+          )}
+
           <div className="cs-body">
             <aside className="cs-aside">
               <h2>Files</h2>
@@ -166,8 +186,9 @@ export default async function WorkPage({ params }: Props) {
 
           <div className="cs-next">
             <p>
-              Next build: a landing page with a working enquiry form — same evidence standard, one file
-              at a time.
+              More files are published as each one clears the same check: the file itself, a preview
+              you can open, a guide that says what to do with it, and a plain statement of what it
+              does not do.
             </p>
             <Link className="link-arrow" href="/#contact">
               Talk about your inbox <span aria-hidden="true">→</span>

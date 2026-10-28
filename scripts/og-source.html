@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="file:///workspace/portfolio/.next/static/chunks/03d63g5j_l6tv.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px;
+    background: #05080b;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .glow {
+    position: absolute; top: -40%; right: -10%;
+    width: 900px; height: 760px;
+    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(79,255,199,.17), transparent 70%);
+  }
+  .glow2 {
+    position: absolute; bottom: -50%; left: -8%;
+    width: 800px; height: 620px;
+    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(46,139,255,.13), transparent 70%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.055) 1px, transparent 1px);
+    background-size: 60px 60px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 35%, #000, transparent 78%);
+  }
+  .wrap { position: relative; padding: 58px 66px; height: 100%; display: flex; flex-direction: column; }
+  .top { display: flex; align-items: baseline; justify-content: space-between; }
+  .name { font-size: 27px; font-weight: 700; letter-spacing: .01em; }
+  .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; letter-spacing: .17em; text-transform: uppercase; color: #4fffc7;
+  }
+  h1 {
+    margin-top: 62px;
+    font-size: 56px; line-height: 1.05; letter-spacing: -.035em; font-weight: 700; max-width: none;
+  }
+  .mint { color: #4fffc7; }
+  .l2 { white-space: nowrap; }
+  .pills { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: .04em;
+    padding: 8px 13px;
+    border: 1px solid rgba(255,255,255,.17);
+    border-radius: 4px; color: #c2ced6;
+  }
+  .pill.on { border-color: rgba(79,255,199,.5); color: #4fffc7; }
+  .foot {
+    margin-top: 26px; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #7f909c;
+  }
+  .foot b { color: #fff; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="glow"></div><div class="glow2"></div><div class="grid"></div>
+  <div class="wrap">
+    <div class="top">
+      <div class="name">Alvin Moncada</div>
+      <div class="role">Virtual Assistant</div>
+    </div>
+    <h1>
+      Your inbox at <span class="mint">zero.</span><br />
+      Your operations, <span class="mint l2">written down.</span>
+    </h1>
+    <div class="pills">
+      <div class="pill on">Inbox management</div>
+      <div class="pill">AI business templates &amp; systems</div>
+      <div class="pill">AI contents &amp; marketing products</div>
+      <div class="pill">AI visual &amp; design assets</div>
+    </div>
+    <div class="foot">
+      <span><b>26</b> deliverable files you can open</span>
+      <span>alvinmoncada.vercel.app</span>
+    </div>
+  </div>
+</body>
+</html>

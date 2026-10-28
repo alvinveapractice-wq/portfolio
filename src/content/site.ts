@@ -7,7 +7,7 @@ export const siteUrl =
 
 export const site = {
   name: "Alvin Moncada",
-  role: "Virtual assistant — email, automation and web",
+  role: "Virtual assistant — inbox management & AI-assisted operations",
   email: "alvinmoncada.va@gmail.com",
   phone: "+63 970 680 0720",
   location: "Philippines · GMT+8",
@@ -15,10 +15,10 @@ export const site = {
   github: "https://github.com/alvinveapractice-wq",
   response: "I reply within 24 hours, Monday to Saturday.",
   intro:
-    "I build the unglamorous systems small businesses run on: a sorted inbox, an automatic hand-off, and a page that takes the enquiry. Then I write the procedure down so it survives without me.",
+    "I build the systems small businesses run on: a sorted inbox, and the templates, content and design work that keeps the week moving. Then I write the procedure down so it survives without me.",
   about: [
     "I spent two years on the front line of a convenience store — checkout, stock, and the daily sales record — where a missed entry becomes a wrong order the following week. That is where I learned that a written procedure beats memory.",
-    "I am now building the remote version of that work: inbox systems, automations, and pages for small businesses. Everything shown here is a self-directed practice build in a sandbox, labelled as such. No client work is claimed, and every claim has a file behind it.",
+    "Now I do the remote version of that work. One inbox, sorted, with a routine someone else could follow. Alongside it, I build the operating kits, content packs and design assets a small business reaches for every week — SOPs, onboarding kits, trackers, content calendars, sticker packs and wall art — each one as an editable file rather than a screenshot of somebody else's idea.",
     "Criminology graduate, 2024. Based in the Philippines, working GMT+8.",
   ],
   facts: [
@@ -26,16 +26,19 @@ export const site = {
     ["Capacity", "40 hrs/week"],
     ["Overlap", "4 hours with US and AU"],
     ["Background", "2 years frontline operations"],
-    ["Tools", "Gmail · Sheets · Notion · n8n · Next.js"],
+    ["Tools", "Gmail · Sheets · Docs · Notion"],
     ["Education", "Criminology, 2024"],
   ],
 } as const;
+
+export type ServiceStatus = "available" | "practice";
 
 export type Service = {
   no: string;
   title: string;
   summary: string;
-  status: "available" | "soon";
+  status: ServiceStatus;
+  statusLabel: string;
   engagement: string;
   href?: string;
 };
@@ -43,52 +46,40 @@ export type Service = {
 export const services: Service[] = [
   {
     no: "01",
-    title: "Email management",
+    title: "Inbox Management",
     summary:
       "A shared inbox sorted by who and what next, a written 15-minute daily routine, and reply templates that answer in the first sentence.",
     status: "available",
+    statusLabel: "Available now",
     engagement: "Monthly retainer · 10 hrs/week",
     href: "/work/inbox-zero",
   },
   {
     no: "02",
-    title: "Automation with n8n",
+    title: "AI Business Templates & Systems",
     summary:
-      "A form, inbox, or sheet event updates the next system and tells the right person — with a written note on what breaks and how it recovers.",
-    status: "available",
-    engagement: "Per workflow",
+      "Reusable operating kits for the work that repeats — SOPs, client onboarding, CRM and inventory trackers, project dashboards, sales trackers. Editable files with instructions, not a template shop.",
+    status: "practice",
+    statusLabel: "Practice build",
+    engagement: "Per kit, or a bundle",
   },
   {
     no: "03",
-    title: "Notion Ops Hub",
+    title: "AI Contents & Marketing Products",
     summary:
-      "A client portal for onboarding, deliverables, approvals, invoices, and the weekly report. Duplicated from one template, tailored to the account.",
-    status: "soon",
-    engagement: "Setup, then monthly upkeep",
+      "Caption packs, email campaign templates, social content calendars, carousel sets and short-form video scripts — written to be edited and sent, not admired.",
+    status: "practice",
+    statusLabel: "Practice build",
+    engagement: "Per batch",
   },
   {
     no: "04",
-    title: "Landing pages",
+    title: "AI Visual & Design Assets",
     summary:
-      "One page that loads fast, works on a phone, and takes the booking or enquiry — deployed, measured, and handed over with the source.",
-    status: "available",
-    engagement: "Fixed scope",
-  },
-  {
-    no: "05",
-    title: "Funnels",
-    summary:
-      "The page, a lead magnet, a thank-you step, and three follow-up emails, with every step tracked so you know where people stop.",
-    status: "soon",
-    engagement: "Fixed scope",
-  },
-  {
-    no: "06",
-    title: "AI digital creation",
-    summary:
-      "Social images and a short promo video to launch the page, produced from a written prompt log and edited before delivery.",
-    status: "soon",
-    engagement: "Per batch",
+      "Brand identity concept boards, themed digital sticker packs and printable wall art — exported as PNG, SVG and print-ready PDF, each with a usage guide.",
+    status: "practice",
+    statusLabel: "Practice build",
+    engagement: "Per collection",
   },
 ];
 
