@@ -212,10 +212,6 @@ export default function Home() {
                 <source src={featured.video.src} type="video/mp4" />
                 Your browser cannot play this video. The same steps are written up in the case study.
               </video>
-              <figcaption>
-                Eight unread messages to zero, with the labels and filters shown live — narrated at a
-                working pace, not a demo pace.
-              </figcaption>
             </figure>
           </div>
         </section>
