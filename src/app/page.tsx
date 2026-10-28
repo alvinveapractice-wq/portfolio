@@ -128,10 +128,10 @@ export default function Home() {
           </div>
 
           <p className="service-foot">
-            <b className="k">Available now</b> — in production, handed over in this form.{" "}
-            <b className="k-b">Practice build</b> — the files are open to view and download below;
-            the case study and walkthrough are still in progress. No client work is claimed on this
-            site.
+            All four lines are available now — the files exist, they are published, and you can open
+            and download every one of them below. The Inbox Zero build also ships a recorded
+            walkthrough; the other three are documented files with a written guide each. No paid
+            client work is claimed on this site.
           </p>
         </div>
       </section>

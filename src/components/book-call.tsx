@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { booking, callSlots } from "@/content/site";
 
 const TZ = "Asia/Manila";
@@ -71,6 +72,14 @@ export function BookCall({
   // Resolved when the dialog opens, not during render: `new Date()` in the
   // render path is an unstable value for the static renderer.
   const [bounds, setBounds] = useState({ min: "", max: "" });
+  // The dialog is portalled to <body>. Any ancestor with a filter,
+  // backdrop-filter or transform becomes the containing block for
+  // position: fixed, which would trap the panel inside the header.
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -115,105 +124,108 @@ export function BookCall({
         {children}
       </button>
 
-      {open && (
-        <div
-          className="modal-backdrop"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Book a call"
-          onClick={() => setOpen(false)}
-        >
-          <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-head">
-              <div>
-                <p className="eyebrow" style={{ marginBottom: "0.5rem" }}>
-                  Book a call
+      {mounted &&
+        open &&
+        createPortal(
+          <div
+            className="modal-backdrop"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Book a call"
+            onClick={() => setOpen(false)}
+          >
+            <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-head">
+                <div>
+                  <p className="eyebrow" style={{ marginBottom: "0.5rem" }}>
+                    Book a call
+                  </p>
+                  <h3>Pick a slot. I&apos;ll confirm.</h3>
+                </div>
+                <button
+                  type="button"
+                  className="carousel-btn"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close booking dialog"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <label className="field">
+                <span>Date</span>
+                <input
+                  type="date"
+                  value={date}
+                  min={bounds.min}
+                  max={bounds.max}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </label>
+
+              <div className="field">
+                <span>Time — Philippine time (GMT+8)</span>
+                <div className="slot-grid">
+                  {callSlots.map((slot) => (
+                    <button
+                      type="button"
+                      key={slot}
+                      className="slot"
+                      data-on={slot === time}
+                      onClick={() => setTime(slot)}
+                    >
+                      {slot}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {chosen && (
+                <p className="modal-summary">
+                  {chosen} · {time} · {booking.google.minutes} minutes
                 </p>
-                <h3>Pick a slot. I&apos;ll confirm.</h3>
-              </div>
-              <button
-                type="button"
-                className="carousel-btn"
-                onClick={() => setOpen(false)}
-                aria-label="Close booking dialog"
-              >
-                ✕
-              </button>
-            </div>
+              )}
 
-            <label className="field">
-              <span>Date</span>
-              <input
-                type="date"
-                value={date}
-                min={bounds?.min}
-                max={bounds?.max}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </label>
-
-            <div className="field">
-              <span>Time — Philippine time (GMT+8)</span>
-              <div className="slot-grid">
-                {callSlots.map((slot) => (
-                  <button
-                    type="button"
-                    key={slot}
-                    className="slot"
-                    data-on={slot === time}
-                    onClick={() => setTime(slot)}
-                  >
-                    {slot}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {chosen && (
-              <p className="modal-summary">
-                {chosen} · {time} · {booking.google.minutes} minutes
-              </p>
-            )}
-
-            <div className="modal-actions">
-              <a
-                className="btn btn-primary"
-                href={googleHref || undefined}
-                target="_blank"
-                rel="noreferrer"
-                aria-disabled={!date}
-                onClick={(e) => {
-                  if (!date) e.preventDefault();
-                }}
-              >
-                {booking.google.label} <span className="arrow">→</span>
-              </a>
-
-              {calendlyHref ? (
+              <div className="modal-actions">
                 <a
-                  className="btn btn-ghost"
-                  href={calendlyHref}
+                  className="btn btn-primary"
+                  href={googleHref || undefined}
                   target="_blank"
                   rel="noreferrer"
+                  aria-disabled={!date}
+                  onClick={(e) => {
+                    if (!date) e.preventDefault();
+                  }}
                 >
-                  {booking.calendly.label} <span className="arrow">→</span>
+                  {booking.google.label} <span className="arrow">→</span>
                 </a>
-              ) : (
-                <span className="modal-note">
-                  {booking.calendly.label} link not set yet — use the Google option above.
-                </span>
-              )}
-            </div>
 
-            <p className="modal-foot">
-              {booking.google.appointmentUrl
-                ? "Google Calendar creates the Meet link and saves the event to my calendar."
-                : "Opens Google Calendar with the slot filled in. Add “Google Meet” as the video conference before saving."}{" "}
-              Evening slots land in US morning hours.
-            </p>
-          </div>
-        </div>
-      )}
+                {calendlyHref ? (
+                  <a
+                    className="btn btn-ghost"
+                    href={calendlyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {booking.calendly.label} <span className="arrow">→</span>
+                  </a>
+                ) : (
+                  <span className="modal-note">
+                    {booking.calendly.label} link not set yet — use the Google option above.
+                  </span>
+                )}
+              </div>
+
+              <p className="modal-foot">
+                {booking.google.appointmentUrl
+                  ? "Google Calendar creates the Meet link and saves the event to my calendar."
+                  : "Opens Google Calendar with the slot filled in. Add “Google Meet” as the video conference before saving."}{" "}
+                Evening slots land in US morning hours.
+              </p>
+            </div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }

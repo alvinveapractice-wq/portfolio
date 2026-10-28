@@ -272,6 +272,18 @@ p { margin: 0 0 1rem; }
 }
 .btn .arrow { font-family: var(--mono); }
 
+/* the primary hero action should out-weigh the secondary one */
+.hero-actions .btn-primary {
+  padding: 0.95rem 2rem;
+  font-size: 0.95rem;
+  min-width: 224px;
+  justify-content: center;
+}
+.hero-actions .btn-ghost {
+  padding: 0.7rem 1.05rem;
+  font-size: 0.84rem;
+}
+
 /* ---------- booking dialog ---------- */
 
 .modal-backdrop {

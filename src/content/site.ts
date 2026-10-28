@@ -50,7 +50,7 @@ export const services: Service[] = [
     summary:
       "A shared inbox sorted by who and what next, a written 15-minute daily routine, and reply templates that answer in the first sentence.",
     status: "available",
-    statusLabel: "Available now",
+    statusLabel: "Available",
     engagement: "Monthly retainer · 10 hrs/week",
     href: "/work/inbox-zero",
   },
@@ -59,8 +59,8 @@ export const services: Service[] = [
     title: "AI Business Templates & Systems",
     summary:
       "Reusable operating kits for the work that repeats — SOPs, client onboarding, CRM and inventory trackers, project dashboards, sales trackers. Editable files with instructions, not a template shop.",
-    status: "practice",
-    statusLabel: "Practice build",
+    status: "available",
+    statusLabel: "Available",
     engagement: "Per kit, or a bundle",
   },
   {
@@ -68,8 +68,8 @@ export const services: Service[] = [
     title: "AI Contents & Marketing Products",
     summary:
       "Caption packs, email campaign templates, social content calendars, carousel sets and short-form video scripts — written to be edited and sent, not admired.",
-    status: "practice",
-    statusLabel: "Practice build",
+    status: "available",
+    statusLabel: "Available",
     engagement: "Per batch",
   },
   {
@@ -77,8 +77,8 @@ export const services: Service[] = [
     title: "AI Visual & Design Assets",
     summary:
       "Brand identity concept boards, themed digital sticker packs and printable wall art — exported as PNG, SVG and print-ready PDF, each with a usage guide.",
-    status: "practice",
-    statusLabel: "Practice build",
+    status: "available",
+    statusLabel: "Available",
     engagement: "Per collection",
   },
 ];

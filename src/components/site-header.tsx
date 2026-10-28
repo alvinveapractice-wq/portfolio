@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BookCall } from "@/components/book-call";
+import { site } from "@/content/site";
 
 const nav = [
   { href: "/#build", label: "Build", id: "build" },
@@ -68,7 +68,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <BookCall className="nav-cta">Book a call</BookCall>
+          <a className="nav-cta" href={`mailto:${site.email}`}>
+            Email me
+          </a>
         </nav>
       </div>
     </header>
