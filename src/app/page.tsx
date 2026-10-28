@@ -128,10 +128,10 @@ export default function Home() {
           </div>
 
           <p className="service-foot">
-            <b className="k">Available now</b> means it is in production and handed over in this form.{" "}
-            <b className="k-b">Practice build</b> means the files exist and you can open every one of
-            them below — the case study and walkthrough are still being written. No paid client work
-            is claimed anywhere on this site, and no client data is used.
+            <b className="k">Available now</b> — in production, handed over in this form.{" "}
+            <b className="k-b">Practice build</b> — the files are open to view and download below;
+            the case study and walkthrough are still in progress. No client work is claimed on this
+            site.
           </p>
         </div>
       </section>

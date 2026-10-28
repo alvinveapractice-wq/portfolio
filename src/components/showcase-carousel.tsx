@@ -4,14 +4,29 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ShowcaseCollection } from "@/content/showcase";
 
+const GAP = 18;
+const ADVANCE_MS = 4200;
+const HOLD_MS = 9000;
+
 export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollection }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [index, setIndex] = useState(0);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
+  const [playing, setPlaying] = useState(true);
+  const [inView, setInView] = useState(false);
+  const holdUntil = useRef(0);
 
   const { items } = collection;
+
+  const cardStep = useCallback(() => {
+    const row = rowRef.current;
+    if (!row) return 1;
+    const card = row.querySelector<HTMLElement>(".shot-card");
+    return card ? card.offsetWidth + GAP : row.clientWidth * 0.8;
+  }, []);
 
   const sync = useCallback(() => {
     const row = rowRef.current;
@@ -21,7 +36,9 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
     setProgress(Math.min(1, Math.max(0, ratio)));
     setAtStart(row.scrollLeft <= 4);
     setAtEnd(row.scrollLeft >= max - 4);
-  }, []);
+    const step = cardStep();
+    setIndex(Math.min(items.length - 1, Math.max(0, Math.round(row.scrollLeft / step))));
+  }, [cardStep, items.length]);
 
   useEffect(() => {
     const row = rowRef.current;
@@ -35,13 +52,55 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
     };
   }, [sync]);
 
-  const step = (dir: 1 | -1) => {
+  // only auto-advance while the row is actually on screen
+  useEffect(() => {
     const row = rowRef.current;
     if (!row) return;
-    const card = row.querySelector<HTMLElement>(".shot-card");
-    const amount = card ? card.offsetWidth + 18 : row.clientWidth * 0.8;
-    row.scrollBy({ left: amount * dir, behavior: "smooth" });
-  };
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 },
+    );
+    observer.observe(row);
+    return () => observer.disconnect();
+  }, []);
+
+  const step = useCallback(
+    (dir: 1 | -1) => {
+      const row = rowRef.current;
+      if (!row) return;
+      row.scrollBy({ left: cardStep() * dir, behavior: "smooth" });
+    },
+    [cardStep],
+  );
+
+  // auto slideshow: advances only while visible, unpaused, and not recently
+  // touched by the visitor
+  useEffect(() => {
+    if (!playing || !inView || open !== null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const id = window.setInterval(() => {
+      if (Date.now() < holdUntil.current) return;
+      const row = rowRef.current;
+      if (!row) return;
+      const max = row.scrollWidth - row.clientWidth;
+      if (row.scrollLeft >= max - 4) {
+        row.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        step(1);
+      }
+    }, ADVANCE_MS);
+
+    return () => window.clearInterval(id);
+  }, [playing, inView, open, step]);
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden) setPlaying(false);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
 
   // lightbox keyboard handling
   useEffect(() => {
@@ -61,11 +120,22 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
     };
   }, [open, items.length]);
 
+  const hold = () => {
+    holdUntil.current = Date.now() + HOLD_MS;
+  };
+
   const current = open === null ? null : items[open];
 
   return (
     <div className="carousel">
-      <div className="carousel-row" ref={rowRef}>
+      <div
+        className="carousel-row"
+        ref={rowRef}
+        onPointerDown={hold}
+        onTouchStart={hold}
+        onWheel={hold}
+        onKeyDown={hold}
+      >
         {items.map((item, i) => (
           <figure className="shot-card" key={item.src}>
             <button
@@ -109,8 +179,17 @@ export function ShowcaseCarousel({ collection }: { collection: ShowcaseCollectio
         >
           →
         </button>
+        <button
+          type="button"
+          className="carousel-btn carousel-play"
+          onClick={() => setPlaying((p) => !p)}
+          aria-label={playing ? "Pause the slideshow" : "Play the slideshow"}
+          aria-pressed={!playing}
+        >
+          {playing ? "❙❙" : "▶"}
+        </button>
         <span className="carousel-count" aria-live="polite">
-          {items.length} visuals
+          {String(index + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </span>
         <div className="carousel-progress" role="presentation">
           <i style={{ width: `${Math.max(6, progress * 100)}%` }} />

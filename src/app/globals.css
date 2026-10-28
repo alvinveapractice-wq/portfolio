@@ -125,6 +125,20 @@ a { color: inherit; }
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .nav a.nl:hover { border-color: var(--mint); color: var(--paper); }
+.nav a.nl[data-active="true"] {
+  color: var(--mint);
+  border-color: var(--mint);
+}
+.nav a.nl[data-active="true"]::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  margin: 0.35rem auto 0;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 3px rgba(79, 255, 199, 0.16);
+}
 
 .nav .nav-cta {
   font-size: 0.8rem;
@@ -604,7 +618,7 @@ p { margin: 0 0 1rem; }
 
 .shot-frame {
   width: 100%;
-  height: clamp(230px, 31vw, 360px);
+  height: clamp(196px, 26.4vw, 306px);
   background: linear-gradient(160deg, var(--ink-card), var(--ink-raise));
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -661,6 +675,49 @@ p { margin: 0 0 1rem; }
 }
 .carousel-btn:hover:not(:disabled) { border-color: var(--mint); color: var(--mint); }
 .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+
+.carousel-play {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  min-width: 2.4rem;
+}
+.carousel-play[aria-pressed="true"] { border-color: var(--line-3); color: var(--muted); }
+
+/* ---------- back to top ---------- */
+
+.back-to-top {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 90;
+  width: 2.9rem;
+  height: 2.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 1rem;
+  color: var(--mint);
+  background: color-mix(in srgb, var(--ink-card) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+.back-to-top[data-show="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  border-color: var(--mint);
+  box-shadow: 0 10px 30px -16px rgba(79, 255, 199, 0.6);
+}
 
 .carousel-progress {
   flex: 1;
