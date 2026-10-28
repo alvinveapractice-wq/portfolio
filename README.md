@@ -43,6 +43,23 @@ npm run build
 npm start
 ```
 
+## Booking
+
+The "Book a call" dialog works out of the box: it opens Google Calendar with the
+chosen slot pre-filled and adds `alvinmoncada.va@gmail.com` as the guest, so
+the event saves to your own calendar.
+
+Two optional environment variables turn on the richer versions:
+
+- `NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL` — your Google Calendar *appointment
+  schedule* link. With one configured, Google picks the slot, attaches the Meet
+  link and files the event on your calendar automatically.
+- `NEXT_PUBLIC_CALENDLY_URL` — your Calendly event link, used as the second
+  option in the dialog.
+
+Both are optional. With neither set, the dialog still books through Google
+Calendar.
+
 ## Deploy
 
 Push to GitHub and import the repository in Vercel. No environment variables are

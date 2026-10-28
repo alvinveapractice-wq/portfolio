@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CopyEmail } from "@/components/copy-email";
+import { BookCall } from "@/components/book-call";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { showcase } from "@/content/showcase";
 import { site, services, processSteps as steps } from "@/content/site";
@@ -17,18 +18,18 @@ export default function Home() {
           <h1>
             Your inbox at <span className="mint">zero</span>.
             <br />
-            Your operations, <span className="mint nowrap">written down</span>.
+            Your week, <span className="mint nowrap">pre-built</span>.
           </h1>
           <p className="hero-lede">{site.intro}</p>
 
           <div className="hero-actions">
-            <Link className="btn btn-primary" href={`/work/${featured.slug}`}>
-              See the Inbox Zero build <span className="arrow">→</span>
-            </Link>
+            <BookCall className="btn btn-primary">
+              Book a call <span className="arrow">→</span>
+            </BookCall>
             <Link className="btn btn-ghost" href="#showcase">
-              Browse the product library
+              Browse the library
             </Link>
-            <span className="hero-hint">SOP, templates and filter list included · no signup</span>
+            <span className="hero-hint">Free 20-minute call · no pitch deck</span>
           </div>
 
           <div className="hero-meta">

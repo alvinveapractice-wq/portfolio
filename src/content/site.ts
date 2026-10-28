@@ -83,7 +83,38 @@ export const services: Service[] = [
   },
 ];
 
+/**
+ * Booking options shown in the "Book a call" dialog.
+ *
+ * google.appointmentUrl — your Google Calendar *appointment schedule* link.
+ *   Google Calendar → Settings → Appointment schedules → New. Set the
+ *   conference to Google Meet and this link becomes the zero-friction option:
+ *   the client picks a slot, Google attaches the Meet link, and the event saves
+ *   to your calendar automatically. Leave it empty and the dialog falls back to
+ *   the plain event editor, which still works but adds one click.
+ *
+ * calendly.url — your Calendly event link (calendly.com → your event → Share).
+ */
+export const booking = {
+  google: {
+    label: "Google Meet",
+    note: "Pick a slot and the Meet link is added automatically.",
+    appointmentUrl: process.env.NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL ?? "",
+    email: "alvinmoncada.va@gmail.com",
+    minutes: 20,
+  },
+  calendly: {
+    label: "Calendly",
+    note: "Use my Calendly calendar instead.",
+    url: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "",
+  },
+} as const;
+
+/** Slots offered in Philippine time (GMT+8). */
+export const callSlots = ["09:00", "11:00", "14:00", "17:00", "20:00", "22:00"];
+
 export const processSteps = [
+
   {
     no: "01",
     title: "A 20-minute call",

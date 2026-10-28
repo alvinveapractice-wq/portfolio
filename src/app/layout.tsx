@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s · Alvin Moncada",
   },
   description:
-    "Philippines-based virtual assistant. I build the systems small businesses run on: a sorted inbox with a written routine, plus editable templates, content packs and design assets you can open.",
+    "Philippines-based virtual assistant. A sorted inbox with a written routine, and pre-built business templates, content packs and design assets you can open and edit. 40 hrs/week, GMT+8.",
   authors: [{ name: "Alvin Moncada" }],
   keywords: [
     "virtual assistant",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Alvin Moncada — your inbox at zero, your operations written down.",
+        alt: "Alvin Moncada — your inbox at zero, your week pre-built.",
       },
     ],
   },
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alvin Moncada — virtual assistant for inbox management and AI-assisted operations",
     description:
-      "A sorted inbox, and the templates, content and design work that keeps the week moving.",
+      "A sorted inbox, and the templates, content and design work that keeps the week moving. 26 files you can open.",
     images: ["/og.png"],
   },
 };
