@@ -220,13 +220,6 @@ p { margin: 0 0 1rem; }
   margin-top: 2.3rem;
 }
 
-.hero-hint {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
