@@ -3,23 +3,41 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+/**
+ * The nav order matches the order the sections actually appear on the page:
+ * hero, about, services, build, library, process, contact. The scroll-spy
+ * walks these in document order, so the two lists must not drift apart.
+ */
 const nav = [
   { href: "/#top", label: "Home", id: "top" },
+  { href: "/#about", label: "About", id: "about" },
+  { href: "/#services", label: "Services", id: "services" },
   { href: "/#build", label: "Build", id: "build" },
   { href: "/#showcase", label: "Library", id: "showcase" },
-  { href: "/#services", label: "Services", id: "services" },
-  { href: "/#about", label: "About", id: "about" },
+  { href: "/#process", label: "How I work", id: "process" },
+  { href: "/#contact", label: "Contact", id: "contact" },
 ];
 
 export function SiteHeader() {
   const [active, setActive] = useState<string | null>("top");
 
+  // A refresh should land at the top of the page, not wherever the browser
+  // last left the scroll position — and the anchor should not stick around
+  // in the address bar either.
+  useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    } else {
+      // honour the incoming deep link once, then clean the URL
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       const line = window.scrollY + window.innerHeight * 0.35;
       let current: string | null = null;
-      // walk the sections in document order, not nav order — otherwise the
-      // last entry in the nav array always wins
       const sections = nav
         .map((item) => {
           const el = document.getElementById(item.id);
@@ -43,6 +61,21 @@ export function SiteHeader() {
     };
   }, []);
 
+  // Clicking a nav item scrolls in place and leaves the address bar clean,
+  // so a refresh always starts at the top instead of jumping back to the
+  // last section you visited.
+  const onNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    const el = document.getElementById(id);
+    if (!el) return; // not on this page — let the link navigate normally
+    event.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", location.pathname + location.search);
+    setActive(id);
+  };
+
   return (
     <header className="site-header">
       <div className="shell header-inner">
@@ -59,6 +92,7 @@ export function SiteHeader() {
               className="nl"
               data-active={active === item.id}
               aria-current={active === item.id ? "true" : undefined}
+              onClick={(event) => onNavClick(event, item.id)}
             >
               {item.label}
             </Link>
