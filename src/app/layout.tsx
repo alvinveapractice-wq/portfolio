@@ -18,6 +18,28 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#05080b",
+  colorScheme: "dark",
+};
+
+/**
+ * Search-engine verification tokens.
+ *
+ * Google Search Console hands you a content string like
+ * "AbCdEf123456..." and Bing hands you an "msvalidate.01" token. Both are
+ * just meta tags, so set the env var in Vercel and redeploy — no code
+ * change and no hand-edited file in the repo.
+ *
+ *   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION = AbCdEf123...
+ *   NEXT_PUBLIC_BING_SITE_VERIFICATION   = 1234abcd...
+ *
+ * Both are read at build time, so a redeploy is needed after setting them.
+ * Leaving them unset renders no tag at all.
+ */
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -39,6 +61,10 @@ export const metadata: Metadata = {
     "Philippines",
   ],
   alternates: { canonical: "/" },
+  verification: {
+    ...(googleVerification ? { google: googleVerification } : {}),
+    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
+  },
   openGraph: {
     title: "Alvin Moncada — virtual assistant for inbox management and AI-assisted operations",
     description:
@@ -63,11 +89,6 @@ export const metadata: Metadata = {
       "A sorted inbox, and the templates, content and design work that keeps the week moving. 26 files you can open.",
     images: ["/og.png"],
   },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#05080b",
-  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
