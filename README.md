@@ -88,6 +88,10 @@ Submit the sitemap at https://search.google.com/search-console. The property mus
 **URL-prefix** property — a Domain property would need a DNS TXT record on `vercel.app`,
 which is not ours to set.
 
+The Search Console property is verified with the HTML file method. The verification file
+lives at `public/google1f87973c903ba8001.html` and **must not be deleted** — Google
+re-checks it, and removing it loses verification.
+
 ## Deploy
 
 Push to `master` and Vercel deploys it. No build-time configuration is required.
