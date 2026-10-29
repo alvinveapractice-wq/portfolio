@@ -19,7 +19,18 @@ export type Work = {
   facts: { label: string; value: string }[];
   media: WorkMedia;
   gallery?: ShowcaseItem[];
-  video?: { src: string; poster: string; length: string; title: string };
+  video?: {
+    src: string;
+    poster: string;
+    length: string;
+    title: string;
+    description: string;
+    /** ISO 8601 duration, e.g. PT3M31S */
+    duration: string;
+    /** the same length in seconds, for the sitemap video extension */
+    durationSeconds: number;
+    uploadDate: string;
+  };
   files?: { label: string; href: string; note: string }[];
   sections: { heading: string; paragraphs: string[]; list?: string[] }[];
   honesty: string;
@@ -80,6 +91,11 @@ export const work: Work[] = [
       poster: "/work/inbox-zero/poster.jpg",
       length: "3 minutes 31 seconds",
       title: "Inbox Zero walkthrough",
+      description:
+        "A 3-minute-31-second walkthrough of the Inbox Zero Kit: seven labels, eight filters and the 15-minute daily routine that takes eight unread messages to zero.",
+      duration: "PT3M31S",
+      durationSeconds: 211,
+      uploadDate: "2026-10-28",
     },
     files: [
       {

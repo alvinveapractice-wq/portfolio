@@ -23,7 +23,20 @@ export default function Home() {
 
   return (
     <>
-      <StructuredData />
+      <StructuredData
+        video={
+          featured.video
+            ? {
+                title: featured.video.title,
+                description: featured.video.description,
+                src: featured.video.src,
+                poster: featured.video.poster,
+                duration: featured.video.duration,
+                uploadDate: featured.video.uploadDate,
+              }
+            : undefined
+        }
+      />
       <section className="hero" id="top">
         <div className="shell">
           <p className="eyebrow">Virtual assistant · Inbox management & AI-assisted operations</p>

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { VideoPlayer } from "@/components/video-player";
 import { getWork, work } from "@/content/work";
+import { StructuredData } from "@/components/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -47,6 +48,20 @@ export default async function WorkPage({ params }: Props) {
 
   return (
     <>
+      <StructuredData
+        video={
+          item.video
+            ? {
+                title: item.video.title,
+                description: item.video.description,
+                src: item.video.src,
+                poster: item.video.poster,
+                duration: item.video.duration,
+                uploadDate: item.video.uploadDate,
+              }
+            : undefined
+        }
+      />
       <article>
         <div className="shell">
           <header className="cs-hero">
