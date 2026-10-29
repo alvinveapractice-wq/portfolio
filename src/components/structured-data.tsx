@@ -1,4 +1,4 @@
-import { site, siteUrl } from "@/content/site";
+import { site, siteUrl, services } from "@/content/site";
 
 /**
  * Tells search engines who the site is about, in the vocabulary they read
@@ -26,11 +26,13 @@ export function StructuredData() {
         description: site.role,
         address: { "@type": "PostalAddress", addressCountry: "PH" },
         knowsAbout: [
-          "Inbox management",
+          // pulled from the service list itself, so this can never drift
+          // away from what the site actually offers
+          ...services.map((service) => service.title),
           "Email management",
-          "Business process templates",
-          "Content calendars",
           "Standard operating procedures",
+          "Content calendars",
+          "Small business operations",
         ],
         sameAs: [site.github],
         mainEntityOfPage: { "@id": `${siteUrl}/#website` },
