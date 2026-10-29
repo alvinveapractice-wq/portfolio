@@ -7,6 +7,7 @@ import { VideoPlayer } from "@/components/video-player";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { ShowcaseStrip } from "@/components/showcase-strip";
 import { ProofIcon } from "@/components/proof-icons";
+import { StructuredData } from "@/components/structured-data";
 import { showcase } from "@/content/showcase";
 import { site, services, processSteps as steps } from "@/content/site";
 import { work } from "@/content/work";
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <>
+      <StructuredData />
       <section className="hero" id="top">
         <div className="shell">
           <p className="eyebrow">Virtual assistant · Inbox management & AI-assisted operations</p>
