@@ -6,6 +6,7 @@ import { PhoneIcon } from "@/components/icons";
 import { VideoPlayer } from "@/components/video-player";
 import { ShowcaseCarousel } from "@/components/showcase-carousel";
 import { ShowcaseStrip } from "@/components/showcase-strip";
+import { ProofIcon } from "@/components/proof-icons";
 import { showcase } from "@/content/showcase";
 import { site, services, processSteps as steps } from "@/content/site";
 import { work } from "@/content/work";
@@ -54,19 +55,31 @@ export default function Home() {
         <div className="shell">
           <div className="proof">
             <div>
-              <b>8 → 0</b>
+              <div className="proof-top">
+                <ProofIcon kind="inbox" />
+                <b>8 → 0</b>
+              </div>
               <span>unread messages to inbox zero</span>
             </div>
             <div>
-              <b>15 min</b>
+              <div className="proof-top">
+                <ProofIcon kind="routine" />
+                <b>15 min</b>
+              </div>
               <span>daily routine, written down</span>
             </div>
             <div>
-              <b>26</b>
+              <div className="proof-top">
+                <ProofIcon kind="kits" />
+                <b>26</b>
+              </div>
               <span>editable templates and content kits</span>
             </div>
             <div>
-              <b>24 h</b>
+              <div className="proof-top">
+                <ProofIcon kind="reply" />
+                <b>24 h</b>
+              </div>
               <span>reply time, Monday to Saturday</span>
             </div>
           </div>

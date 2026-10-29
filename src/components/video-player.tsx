@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 function clock(seconds: number) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -39,6 +39,8 @@ export function VideoPlayer({
     if (!video) return;
     video.play().catch(() => undefined);
     setStarted(true);
+    // hand the keyboard to the video so space keeps working right after
+    video.focus({ preventScroll: true });
   }, []);
 
   const toggle = useCallback(() => {
@@ -66,29 +68,40 @@ export function VideoPlayer({
     else video.requestFullscreen().catch(() => undefined);
   }, []);
 
-  // space / arrows, but never while a form control has focus
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      if (target && /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(target.tagName)) return;
-      const video = videoRef.current;
-      if (!video) return;
-      if (event.key === " " || event.key === "k") {
-        event.preventDefault();
-        toggle();
-      }
-      if (event.key === "ArrowRight") seekTo(Math.min(duration, video.currentTime + 5));
-      if (event.key === "ArrowLeft") seekTo(Math.max(0, video.currentTime - 5));
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [toggle, seekTo, duration]);
+  /**
+   * Space and the arrow keys are handled on the player itself, not on the
+   * window. A window-level listener meant that pressing space anywhere on
+   * the page — while reading the About copy, while scrolling — started the
+   * video playing, which looked like the site had taken over the keyboard.
+   * Now the keys only reach the player when the focus is inside it.
+   */
+  const onPlayerKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement | null;
+    // let the buttons and the scrubber keep their own keyboard behaviour
+    if (target && /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(target.tagName)) return;
+    const video = videoRef.current;
+    if (!video) return;
+    if (event.key === " " || event.key === "k") {
+      event.preventDefault();
+      event.stopPropagation();
+      toggle();
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      seekTo(Math.min(duration, video.currentTime + 5));
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      seekTo(Math.max(0, video.currentTime - 5));
+    }
+  };
 
   const pct = duration > 0 ? (current / duration) * 100 : 0;
 
   return (
     <div
       className="video-player"
+      onKeyDown={onPlayerKey}
       onMouseEnter={() => setShowBar(true)}
       onMouseLeave={() => setShowBar(false)}
       onContextMenu={(event) => event.preventDefault()}
@@ -98,9 +111,11 @@ export function VideoPlayer({
         poster={poster}
         preload="none"
         playsInline
+        tabIndex={0}
         draggable={false}
         controlsList="nodownload noremoteplayback"
         disablePictureInPicture
+        onClick={toggle}
         onContextMenu={(event) => event.preventDefault()}
         onDragStart={(event) => event.preventDefault()}
         onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}

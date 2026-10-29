@@ -35,7 +35,7 @@ export const site = {
     ["Capacity", "40 hrs/week"],
     ["Overlap", "4 hours with US and AU"],
     ["Background", "2 years frontline operations"],
-    ["Tools", "Gmail · Sheets · Docs · Notion"],
+    ["Tools", "Gmail · Sheets · Docs · Notion · Slack · ChatGPT"],
     ["Education", "Criminology, 2024"],
   ],
 } as const;
