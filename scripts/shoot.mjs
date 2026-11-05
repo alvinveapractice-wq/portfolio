@@ -23,7 +23,20 @@ for (const t of targets) {
     hasTouch: t.mobile,
   });
   await page.goto(base + t.url, { waitUntil: "networkidle2", timeout: 60000 });
+
+  // Walk the page so lazy-loaded images below the fold are fetched before capture.
+  await page.evaluate(async () => {
+    const step = window.innerHeight * 0.8;
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 120));
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+  await new Promise((r) => setTimeout(r, 1200));
+  await page.evaluate(() => window.scrollTo(0, 0));
   await new Promise((r) => setTimeout(r, 800));
+
   const overflow = await page.evaluate(() => ({
     doc: document.documentElement.scrollWidth,
     win: window.innerWidth,

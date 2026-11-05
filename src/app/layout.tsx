@@ -43,21 +43,22 @@ const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Alvin Moncada — virtual assistant for inbox management and AI-assisted operations",
+    default: "Alvin Moncada — virtual assistant for email, content and web",
     template: "%s · Alvin Moncada",
   },
   description:
-    "Philippines-based virtual assistant. A sorted inbox with a written routine, and pre-built business templates, content packs and design assets you can open and edit. 40 hrs/week, GMT+8.",
+    "Philippines-based virtual assistant. A sorted inbox with a written routine, plus content sets, business templates, design assets and landing pages you can open and edit. 40 hrs/week, GMT+8.",
   authors: [{ name: "Alvin Moncada" }],
   keywords: [
     "virtual assistant",
-    "inbox management",
     "email management",
+    "inbox management",
     "inbox zero",
-    "AI business templates",
-    "Notion consultant",
+    "social media content",
     "content calendar",
-    "digital sticker pack",
+    "business templates",
+    "brand identity",
+    "landing page",
     "Philippines",
   ],
   alternates: { canonical: "/" },
@@ -66,9 +67,9 @@ export const metadata: Metadata = {
     ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
   },
   openGraph: {
-    title: "Alvin Moncada — virtual assistant for inbox management and AI-assisted operations",
+    title: "Alvin Moncada — virtual assistant for email, content and web",
     description:
-      "A sorted inbox, and the templates, content and design work that keeps the week moving. Every build shown is a labelled practice project.",
+      "A sorted inbox, a month of content, business templates, design assets and a landing page that takes the enquiry. Every build shown is a labelled practice project.",
     url: "/",
     siteName: "Alvin Moncada",
     type: "website",
@@ -84,9 +85,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alvin Moncada — virtual assistant for inbox management and AI-assisted operations",
+    title: "Alvin Moncada — virtual assistant for email, content and web",
     description:
-      "A sorted inbox, and the templates, content and design work that keeps the week moving. 26 files you can open.",
+      "A sorted inbox, a month of content, and a page that takes the enquiry. 26 files you can open.",
     images: ["/og.png"],
   },
 };

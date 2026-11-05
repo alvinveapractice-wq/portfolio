@@ -39,7 +39,7 @@ export default function Home() {
       />
       <section className="hero" id="top">
         <div className="shell">
-          <p className="eyebrow">Virtual assistant · Inbox management & AI-assisted operations</p>
+          <p className="eyebrow">Virtual assistant · Email, content and web</p>
           <h1>
             Your inbox at <span className="mint">zero</span>.
             <br />
@@ -110,7 +110,7 @@ export default function Home() {
           <div className="section-head">
             <div>
               <span className="section-tag">01 — What I do</span>
-              <h2>Four things I can be hired for.</h2>
+              <h2>Six things I can be hired for.</h2>
             </div>
             <p className="section-note">
               Every engagement is quoted after a short call, and the number is fixed in writing before

@@ -1,10 +1,9 @@
 # Portfolio — Alvin Moncada
 
-The portfolio and case studies for a virtual assistant working in inbox management and
-AI-assisted business operations: operating template kits, marketing content products, and
-visual design assets.
+The portfolio and case studies for a virtual assistant working in email management, content,
+business templates, visual design, and landing pages.
 
-Live at **https://alvinmoncada.vercel.app** — four service lines, one measured flagship
+Live at **https://alvinmoncada.vercel.app** — six service lines, one measured flagship
 build, and 26 products you can open and take away.
 
 Built with Next.js 16 (App Router) and TypeScript. Styled with hand-written CSS over a
@@ -14,7 +13,7 @@ Tailwind v4 preflight reset. Deployed on Vercel, auto-deployed from `master`.
 
 | Route | What it holds |
 | --- | --- |
-| `/` | The offer, the four service lines, about, the flagship build, and the product library |
+| `/` | The offer, the six service lines, about, the flagship build, and the product library |
 | `/work/inbox-zero` | The flagship build in full: before/after, the walkthrough video, and the SOP, templates and filter list as PDFs |
 | `/work/templates` | Seven business operations kits, with **13** downloadable files |
 | `/work/contents` | Content and campaign packs, with **4** downloadable files |
@@ -25,7 +24,7 @@ collection links to its full file list on the case study page.
 
 ## How it is put together
 
-- `src/content/site.ts` — name, contact details, availability, facts, the four service
+- `src/content/site.ts` — name, contact details, availability, facts, the six service
   lines, the booking options and the process steps.
 - `src/content/showcase.ts` — the three collections, their 26 images, and the file each
   product hands over.

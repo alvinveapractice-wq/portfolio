@@ -7,7 +7,7 @@ export const siteUrl =
 
 export const site = {
   name: "Alvin Moncada",
-  role: "Virtual assistant — inbox management & AI-assisted operations",
+  role: "Virtual assistant — email, content and web",
   email: "alvinmoncada.va@gmail.com",
   phone: "+63 970 680 0720",
   /**
@@ -23,10 +23,10 @@ export const site = {
   github: "https://github.com/alvinveapractice-wq",
   response: "I reply within 24 hours, Monday to Saturday.",
   intro:
-    "I build the systems small businesses run on: a sorted inbox, and the templates, content and design work that keeps the week moving. Then I write the procedure down so it survives without me.",
+    "I build the systems small businesses run on: a sorted inbox, a month of content, the templates behind the week, and a page that takes the enquiry. Then I write the procedure down so it survives without me.",
   about: [
     "I spent two years on the front line of a convenience store — checkout, stock, and the daily sales record — where a missed entry becomes a wrong order the following week. That is where I learned that a written procedure beats memory.",
-    "Now I do the remote version of that work. One inbox, sorted, with a routine someone else could follow. Alongside it, I build the kits and assets a small business reaches for every week — SOPs, onboarding packs, trackers, content calendars, sticker packs, wall art — each one an editable file, not a screenshot of somebody else's idea.",
+    "Now I do the remote version of that work. One inbox, sorted, with a routine someone else could follow. Alongside it, I build the kits and assets a small business reaches for every week — SOPs, onboarding packs, trackers, content calendars, sticker packs, wall art — and the pages that put them to work. Each one an editable file, not a screenshot of somebody else's idea.",
     "Everything on this site is a practice build I made for myself. No client results are claimed and no client data is used.",
     "Criminology graduate, 2024. Based in the Philippines, working GMT+8.",
   ],
@@ -35,7 +35,7 @@ export const site = {
     ["Capacity", "40 hrs/week"],
     ["Overlap", "4 hours with US and AU"],
     ["Background", "2 years frontline operations"],
-    ["Tools", "Gmail · Sheets · Docs · Notion · Slack · ChatGPT"],
+    ["Tools", "Gmail · Sheets · Docs · Notion · Next.js · ChatGPT"],
     ["Education", "Criminology, 2024"],
   ],
 } as const;
@@ -55,7 +55,7 @@ export type Service = {
 export const services: Service[] = [
   {
     no: "01",
-    title: "Inbox Management",
+    title: "Email management",
     summary:
       "A shared inbox sorted by who and what next, a written 15-minute daily routine, and reply templates that answer in the first sentence.",
     status: "available",
@@ -65,30 +65,48 @@ export const services: Service[] = [
   },
   {
     no: "02",
-    title: "AI Business Templates & Systems",
+    title: "Social content",
+    summary:
+      "Caption packs, carousel sets, short-form video scripts and 30-day calendars — written to a brief and laid out ready to schedule, not a folder of ideas.",
+    status: "available",
+    statusLabel: "Available",
+    engagement: "Per batch · monthly calendar",
+  },
+  {
+    no: "03",
+    title: "Visual assets",
+    summary:
+      "Brand identity concept boards, themed sticker packs and printable wall art — exported as PNG, SVG and print-ready PDF, each with a usage guide.",
+    status: "available",
+    statusLabel: "Available",
+    engagement: "Per set",
+  },
+  {
+    no: "04",
+    title: "Business templates",
     summary:
       "Reusable operating kits for the work that repeats — SOPs, client onboarding, CRM and inventory trackers, project dashboards, sales trackers. Editable files with instructions, not a template shop.",
     status: "available",
     statusLabel: "Available",
-    engagement: "Per kit, or a bundle",
+    engagement: "Fixed scope",
   },
   {
-    no: "03",
-    title: "AI Contents & Marketing Products",
+    no: "05",
+    title: "Landing pages",
     summary:
-      "Caption packs, email campaign templates, social content calendars, carousel sets and short-form video scripts — written to be edited and sent, not admired.",
+      "One page that loads fast, works on a phone, and takes the booking or enquiry — deployed, measured, and handed over with the source.",
     status: "available",
     statusLabel: "Available",
-    engagement: "Per batch",
+    engagement: "Fixed scope",
   },
   {
-    no: "04",
-    title: "AI Visual & Design Assets",
+    no: "06",
+    title: "Funnels",
     summary:
-      "Brand identity concept boards, themed digital sticker packs and printable wall art — exported as PNG, SVG and print-ready PDF, each with a usage guide.",
-    status: "available",
-    statusLabel: "Available",
-    engagement: "Per collection",
+      "The page, a lead magnet, a thank-you step and three follow-up emails, with every step tracked so you know where people stop.",
+    status: "practice",
+    statusLabel: "Coming soon",
+    engagement: "Fixed scope",
   },
 ];
 
