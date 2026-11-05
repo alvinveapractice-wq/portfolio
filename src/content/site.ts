@@ -71,6 +71,7 @@ export const services: Service[] = [
     status: "available",
     statusLabel: "Available",
     engagement: "Per batch · monthly calendar",
+    href: "/work/contents",
   },
   {
     no: "03",
@@ -80,6 +81,7 @@ export const services: Service[] = [
     status: "available",
     statusLabel: "Available",
     engagement: "Per set",
+    href: "/work/visual",
   },
   {
     no: "04",
@@ -89,6 +91,7 @@ export const services: Service[] = [
     status: "available",
     statusLabel: "Available",
     engagement: "Fixed scope",
+    href: "/work/templates",
   },
   {
     no: "05",
